@@ -1,0 +1,553 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09308192212A9B7B00557600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09308191212A9B7B00557600 /* AppDelegate.swift */; };
+		09308197212A9B7B00557600 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09308195212A9B7B00557600 /* Main.storyboard */; };
+		09308199212A9B7D00557600 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09308198212A9B7D00557600 /* Assets.xcassets */; };
+		0930819C212A9B7D00557600 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0930819A212A9B7D00557600 /* LaunchScreen.storyboard */; };
+		093081A7212A9BDA00557600 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081A6212A9BDA00557600 /* API.swift */; };
+		093081A9212A9C8600557600 /* SHHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081A8212A9C8600557600 /* SHHTTPRequest.swift */; };
+		093081AC212A9F6800557600 /* SHHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081AB212A9F6800557600 /* SHHTTPClient.swift */; };
+		093081AF212AA4A000557600 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081AE212AA4A000557600 /* Constants.swift */; };
+		093081B2212AA65000557600 /* TaxiGoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081B1212AA65000557600 /* TaxiGoError.swift */; };
+		093081B5212AAEE600557600 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081B4212AAEE600557600 /* Reservation.swift */; };
+		093081B9212ABC5700557600 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081B8212ABC5700557600 /* UserManager.swift */; };
+		093081BB212AC42F00557600 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081BA212AC42F00557600 /* LoginManager.swift */; };
+		093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081BD212ACCE200557600 /* LoginPageViewController.swift */; };
+		093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093F4E0E212BB02D002131D7 /* R.generated.swift */; };
+		EB04A6EDF3B3625814EB5A16 /* Pods_TaxiGo_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0930818E212A9B7B00557600 /* TaxiGo_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiGo_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09308191212A9B7B00557600 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		09308196212A9B7B00557600 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		09308198212A9B7D00557600 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0930819B212A9B7D00557600 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0930819D212A9B7D00557600 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		093081A6212A9BDA00557600 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		093081A8212A9C8600557600 /* SHHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPRequest.swift; sourceTree = "<group>"; };
+		093081AB212A9F6800557600 /* SHHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPClient.swift; sourceTree = "<group>"; };
+		093081AE212AA4A000557600 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		093081B1212AA65000557600 /* TaxiGoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiGoError.swift; sourceTree = "<group>"; };
+		093081B4212AAEE600557600 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		093081B8212ABC5700557600 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		093081BA212AC42F00557600 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		093081BD212ACCE200557600 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		093F4E0E212BB02D002131D7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaxiGo_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6B2FAA7A9D9160DA223C47E /* Pods-TaxiGo_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.debug.xcconfig"; sourceTree = "<group>"; };
+		CBE607CE0DEDF77C63E698D8 /* Pods-TaxiGo_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0930818B212A9B7B00557600 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB04A6EDF3B3625814EB5A16 /* Pods_TaxiGo_Project.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09308185212A9B7B00557600 = {
+			isa = PBXGroup;
+			children = (
+				09308190212A9B7B00557600 /* TaxiGo_Project */,
+				0930818F212A9B7B00557600 /* Products */,
+				CE927FE4E4AC49748B3915E4 /* Pods */,
+				BC0CC6816512BB5ADDE42680 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0930818F212A9B7B00557600 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0930818E212A9B7B00557600 /* TaxiGo_Project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09308190212A9B7B00557600 /* TaxiGo_Project */ = {
+			isa = PBXGroup;
+			children = (
+				093081A5212A9B9E00557600 /* Controller */,
+				093081A4212A9B9800557600 /* View */,
+				093081A3212A9B8F00557600 /* Model */,
+				093081B6212AB79400557600 /* Storyboard */,
+				093F4E0C212BAFAC002131D7 /* Resource */,
+				093F4E0D212BAFEF002131D7 /* Support */,
+				09308191212A9B7B00557600 /* AppDelegate.swift */,
+				09308198212A9B7D00557600 /* Assets.xcassets */,
+				0930819A212A9B7D00557600 /* LaunchScreen.storyboard */,
+				0930819D212A9B7D00557600 /* Info.plist */,
+			);
+			path = TaxiGo_Project;
+			sourceTree = "<group>";
+		};
+		093081A3212A9B8F00557600 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				093081B7212ABC4900557600 /* User */,
+				093081B3212AAE7D00557600 /* API */,
+				093081B0212AA63500557600 /* Error */,
+				093081AD212AA48900557600 /* Constants */,
+				093081AA212A9F1600557600 /* HTTP */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		093081A4212A9B9800557600 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		093081A5212A9B9E00557600 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				093081BC212ACCC400557600 /* User */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		093081AA212A9F1600557600 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				093081A8212A9C8600557600 /* SHHTTPRequest.swift */,
+				093081AB212A9F6800557600 /* SHHTTPClient.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		093081AD212AA48900557600 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				093081AE212AA4A000557600 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		093081B0212AA63500557600 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				093081B1212AA65000557600 /* TaxiGoError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		093081B3212AAE7D00557600 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				093081A6212A9BDA00557600 /* API.swift */,
+				093081B4212AAEE600557600 /* Reservation.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		093081B6212AB79400557600 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				09308195212A9B7B00557600 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		093081B7212ABC4900557600 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				093081B8212ABC5700557600 /* UserManager.swift */,
+				093081BA212AC42F00557600 /* LoginManager.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		093081BC212ACCC400557600 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				093081BD212ACCE200557600 /* LoginPageViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		093F4E0C212BAFAC002131D7 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		093F4E0D212BAFEF002131D7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				093F4E0E212BB02D002131D7 /* R.generated.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		BC0CC6816512BB5ADDE42680 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE927FE4E4AC49748B3915E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6B2FAA7A9D9160DA223C47E /* Pods-TaxiGo_Project.debug.xcconfig */,
+				CBE607CE0DEDF77C63E698D8 /* Pods-TaxiGo_Project.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0930818D212A9B7B00557600 /* TaxiGo_Project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 093081A0212A9B7D00557600 /* Build configuration list for PBXNativeTarget "TaxiGo_Project" */;
+			buildPhases = (
+				F2464A93F0406029565EBF63 /* [CP] Check Pods Manifest.lock */,
+				093F4E0B212BAE8C002131D7 /* Run Script */,
+				0930818A212A9B7B00557600 /* Sources */,
+				0930818B212A9B7B00557600 /* Frameworks */,
+				0930818C212A9B7B00557600 /* Resources */,
+				B923428EAAE27567794961AE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaxiGo_Project;
+			productName = TaxiGo_Project;
+			productReference = 0930818E212A9B7B00557600 /* TaxiGo_Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09308186212A9B7B00557600 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "尚靖";
+				TargetAttributes = {
+					0930818D212A9B7B00557600 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 09308189212A9B7B00557600 /* Build configuration list for PBXProject "TaxiGo_Project" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09308185212A9B7B00557600;
+			productRefGroup = 0930818F212A9B7B00557600 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0930818D212A9B7B00557600 /* TaxiGo_Project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0930818C212A9B7B00557600 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0930819C212A9B7D00557600 /* LaunchScreen.storyboard in Resources */,
+				09308199212A9B7D00557600 /* Assets.xcassets in Resources */,
+				09308197212A9B7B00557600 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		093F4E0B212BAE8C002131D7 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		B923428EAAE27567794961AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2464A93F0406029565EBF63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TaxiGo_Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0930818A212A9B7B00557600 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				093081AF212AA4A000557600 /* Constants.swift in Sources */,
+				093081A7212A9BDA00557600 /* API.swift in Sources */,
+				09308192212A9B7B00557600 /* AppDelegate.swift in Sources */,
+				093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */,
+				093081A9212A9C8600557600 /* SHHTTPRequest.swift in Sources */,
+				093081B2212AA65000557600 /* TaxiGoError.swift in Sources */,
+				093081BB212AC42F00557600 /* LoginManager.swift in Sources */,
+				093081B5212AAEE600557600 /* Reservation.swift in Sources */,
+				093081B9212ABC5700557600 /* UserManager.swift in Sources */,
+				093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */,
+				093081AC212A9F6800557600 /* SHHTTPClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		09308195212A9B7B00557600 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09308196212A9B7B00557600 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0930819A212A9B7D00557600 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0930819B212A9B7D00557600 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0930819E212A9B7D00557600 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0930819F212A9B7D00557600 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		093081A1212A9B7D00557600 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6B2FAA7A9D9160DA223C47E /* Pods-TaxiGo_Project.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ARXY2PA7PZ;
+				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Shannn.TaxiGo-Project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		093081A2212A9B7D00557600 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBE607CE0DEDF77C63E698D8 /* Pods-TaxiGo_Project.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ARXY2PA7PZ;
+				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Shannn.TaxiGo-Project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09308189212A9B7B00557600 /* Build configuration list for PBXProject "TaxiGo_Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0930819E212A9B7D00557600 /* Debug */,
+				0930819F212A9B7D00557600 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		093081A0212A9B7D00557600 /* Build configuration list for PBXNativeTarget "TaxiGo_Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				093081A1212A9B7D00557600 /* Debug */,
+				093081A2212A9B7D00557600 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09308186212A9B7B00557600 /* Project object */;
+}
