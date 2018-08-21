@@ -18,10 +18,13 @@ class LoginPageViewController: UIViewController {
         
     }
     
+    let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        UserManager.shared.getUserToken(authCode: authCode)
+
     }
 
     override func didReceiveMemoryWarning() {
