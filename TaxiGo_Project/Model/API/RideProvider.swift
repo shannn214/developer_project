@@ -53,6 +53,10 @@ struct RideProvider {
     
     private weak var httpClient = SHHTTPClient.shared
     
+    func getRidesHistory() {
+        
+    }
+    
 }
 
 

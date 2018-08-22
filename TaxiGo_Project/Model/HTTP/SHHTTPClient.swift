@@ -20,38 +20,40 @@ class SHHTTPClient {
         
     }
     
-//    @discardableResult
-//    func request(_ request: SHHTTPRequest, success: @escaping (Data) -> Void, failure: @escaping (Error) -> Void) -> URLSessionDataTask? {
+    @discardableResult
+    func request(_ request: SHHTTPRequest,
+                 success: @escaping (Data) -> Void,
+                 failure: @escaping (Error) -> Void) -> URLSessionDataTask? {
+
+//        do {
+//            return try request(request.request(), success: success, failure: failure)
+//        } catch {
+//            failure(error)
+//            return nil
+//        }
+
+        return nil
+        
+    }
+    
+//    func request(method: SHHTTPMethod, urlString: String, parameter: [String: Any], id: String?, success: String?, failure: String?) {
 //
+//        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id!) else { return }
 //        let session = URLSession.shared
+//        var request = URLRequest(url: url)
 //
-//        session.dataTask(with: request) { (data, response, error) in
+//        var param = parameter
 //
+//        if method == .get {
+//
+//            request.httpMethod = method.rawValue
+//            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.addValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
 //
 //
 //        }
 //
-//
 //    }
-    
-    func request(method: SHHTTPMethod, urlString: String, parameter: [String: Any], id: String?, success: String?, failure: String?) {
-        
-        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id!) else { return }
-        let session = URLSession.shared
-        var request = URLRequest(url: url)
-        
-        var param = parameter
-        
-        if method == .get {
-            
-            request.httpMethod = method.rawValue
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
-            
-            
-        }
-        
-    }
     
 }
 
