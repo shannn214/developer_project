@@ -16,31 +16,54 @@ class SHHTTPClient {
     
     private init() {
         
-        queue = DispatchQueue(label: String(describing: SHHTTPClient.self),
-                              qos: .default,
-                              attributes: .concurrent)
+        queue = DispatchQueue(label: String(describing: SHHTTPClient.self) + UUID().uuidString, qos: .default, attributes: .concurrent)
         
     }
     
-    @discardableResult
-    private func request(method: SHHTTPMethod) -> URLSessionDataTask? {
-        
-        var request: URLRequest?
-        
-        let url = TGPConstans.taxiGoUrl
-        
-//        switch method {
+//    @discardableResult
+//    func request(_ request: SHHTTPRequest, success: @escaping (Data) -> Void, failure: @escaping (Error) -> Void) -> URLSessionDataTask? {
 //
-//        case .post:
-//            request =
+//        let session = URLSession.shared
+//
+//        session.dataTask(with: request) { (data, response, error) in
+//
+//
 //
 //        }
+//
+//
+//    }
+    
+    func request(method: SHHTTPMethod, urlString: String, parameter: [String: Any], id: String?, success: String?, failure: String?) {
         
-        guard let task: URLSessionDataTask = URLSession.shared.dataTask(with: URL(string: url)!) else { return nil }
+        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id!) else { return }
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
         
-        return task
+        var param = parameter
+        
+        if method == .get {
+            
+            request.httpMethod = method.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
+            
+            
+        }
         
     }
     
+}
+
+final class API {
+    
+    typealias Success = () -> Void
+    typealias Failure = (_ err: Error) -> Void
+    
+    static let shared: API = {
+        let instance = API()
+        return instance
+    }()
     
 }
+

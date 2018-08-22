@@ -55,7 +55,7 @@ extension SHHTTPRequest {
     func requestBody() -> [String: Any] { return [:] }
 
     func urlString() -> String {
-        return TGPConstans.taxiGoUrl
+        return TGPConstans.taxiGoUrl + urlParameter()
     }
     
     func request() throws -> URLRequest {

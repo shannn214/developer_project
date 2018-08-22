@@ -25,9 +25,11 @@ class LoginPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UserManager.shared.getUserToken(authCode: authCode)
+//        UserManager.shared.getUserToken(authCode: authCode)
         
-        UserManager.shared.getRedirect(params: [paramsKey : authCode])
+        UserManager.shared.requestARide(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號")
+        
+//        UserManager.shared.getRidesHistory(id: "/ysGdzP")
 
     }
 
