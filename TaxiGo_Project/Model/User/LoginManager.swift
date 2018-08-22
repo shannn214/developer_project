@@ -18,26 +18,19 @@ class LoginManager: UIViewController {
     
     var authViewController = UIViewController()
     
+    var authSession: SFAuthenticationSession?
+    
     let APPID = "-LKPYysKDcIdNs7CLYa3"
     
     let redirectUri = "https://dev-user.taxigo.com.tw/oauth/test"
     
     let appSecret = "ktOg9LHSZeGOIHxrp5beuYjNpacI7nu4xMAf"
     
-    let callBackUrl = "SFAuthenticationExample://"
+    let callBackUrlScheme = "SFAuthenticationExample://"
     
     let code = "code"
     
-//    let completion: SFAuthenticationSession.CompletionHandler = { (callBack: URL?, error: Error?) in
-//
-//        guard error == nil, let successURL = callBack else { return }
-//
-//        let autToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == ""}).first
-//
-//    }
-    
-    var authSession: SFAuthenticationSession?
-    
+
     func startAuthenticationFlow() {
         
         //NOTE: Test safari
@@ -48,36 +41,25 @@ class LoginManager: UIViewController {
                                                       animated: true,
                                                       completion: nil)
         
-//        //Initialize auth session
-//
-//        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrl, completionHandler: { (callBack: URL?, error: Error?) in
-//
-//            guard error == nil, let successURL = callBack else {
-//                print(error!)
-//                return }
-//
-//            let callBackRedirect = getQueryStringParameter(url: successURL.absoluteString, param: self.code)
-//
-//            print(callBackRedirect)
-//
-//        })
-//        self.authSession?.start()
+        // NOTE: Cannot grab the code from URL
+        startAuthSession()
         
     }
     
     func startAuthSession() {
-        
-        //Initialize auth session
-        
+                
         guard let authURL = URL(string: "https://user.taxigo.com.tw/oauth/authorize?app_id=" + "\(APPID)" + "&redirect_uri=" + "\(redirectUri)") else { return }
         
-        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrl, completionHandler: { (callBack: URL?, error: Error?) in
+        self.authSession = SFAuthenticationSession(url: authURL, callbackURLScheme: callBackUrlScheme, completionHandler: { (callBack: URL?, error: Error?) in
             
             guard error == nil, let successURL = callBack else {
                 print(error!)
+                print("=======")
                 return }
             
-            let callBackRedirect = getQueryStringParameter(url: successURL.absoluteString, param: self.code)
+//            let callBackRedirect = getQueryStringParameter(url: successURL.absoluteString, param: self.code)
+            
+            let callBackRedirect = NSURLComponents(string: successURL.absoluteString)?.queryItems?.filter({ $0.name == "code" }).first
             
             print(callBackRedirect)
             

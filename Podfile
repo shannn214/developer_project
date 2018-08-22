@@ -6,6 +6,7 @@ target 'TaxiGo_Project' do
   use_frameworks!
 
 pod 'R.swift'
+pod 'SwifterSwift'
 
   # Pods for TaxiGo_Project
 

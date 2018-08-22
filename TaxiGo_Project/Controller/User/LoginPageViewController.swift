@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginPageViewController: UIViewController {
 
     @IBOutlet weak var testbtn: UIButton!
@@ -17,13 +18,16 @@ class LoginPageViewController: UIViewController {
         LoginManager.shared.startAuthenticationFlow()
         
     }
+    let paramsKey = "code"
     
     let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        UserManager.shared.getUserToken(authCode: authCode)
+        UserManager.shared.getUserToken(authCode: authCode)
+        
+        UserManager.shared.getRedirect(params: [paramsKey : authCode])
 
     }
 
