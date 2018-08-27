@@ -28,7 +28,7 @@ enum SHHTTPHeader: String {
 
 enum SHHTTPContentType: String {
     
-    case json = "application/json"
+    case json = "application/x-www-form-urlencoded"
     
 }
 
@@ -52,6 +52,30 @@ protocol SHHTTPRequest {
 
 extension SHHTTPRequest {
     
+    func customHeader() -> [String: String] { return [:]}
+    
+    func requestHeader() -> [String: String] {
+        
+        var header = customHeader()
+        
+        let authorization = "Bearer \(TGPConstans.token)"
+        
+        switch self.httpMethod() {
+            
+        case .post, .get:
+            header[SHHTTPHeader.contentType.rawValue] = SHHTTPContentType.json.rawValue
+            
+        default:
+            break
+            
+        }
+        
+        header[SHHTTPHeader.authorization.rawValue] = authorization
+        
+        return header
+        
+    }
+    
     func requestBody() -> [String: Any] { return [:] }
 
     func urlString() -> String {
@@ -65,6 +89,8 @@ extension SHHTTPRequest {
         guard let taxiGoUrl = url else { throw TaxiGoError.serverError }
         
         var request = URLRequest(url: taxiGoUrl)
+        
+        request.allHTTPHeaderFields = requestHeader()
         
         request.httpMethod = httpMethod().rawValue
         

@@ -57,15 +57,4 @@ class SHHTTPClient {
     
 }
 
-final class API {
-    
-    typealias Success = () -> Void
-    typealias Failure = (_ err: Error) -> Void
-    
-    static let shared: API = {
-        let instance = API()
-        return instance
-    }()
-    
-}
 

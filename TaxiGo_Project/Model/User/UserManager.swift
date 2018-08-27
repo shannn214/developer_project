@@ -9,11 +9,15 @@
 import Foundation
 import SwifterSwift
 
-class UserManager {
+struct UserManager {
     
-    private init(){}
+//    private init(){}
     
-    static let shared = UserManager()
+//    static let shared = UserManager()
+    
+    private weak var httpClient = SHHTTPClient.shared
+    
+    private let provider = RideProvider()
     
     func getUserToken(authCode: String) {
         
@@ -61,23 +65,21 @@ class UserManager {
         
         let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride")
         
-        var request: URLRequest?
-        
         var params: [String: Any] = ["start_latitude": latitude,
                                      "start_longitude": longitude,
                                      "start_address": address]
         
-        request = URLRequest(url: url!)
-        request?.httpMethod = "POST"
-        request?.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         let body = params.queryParameters
-        request?.httpBody = body.data(using: .utf8, allowLossyConversion: true)
+        request.httpBody = body.data(using: .utf8, allowLossyConversion: true)
         
         let token = "Bearer \(TGPConstans.token)"
-        request?.setValue(token, forHTTPHeaderField: "Authorization")
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         
-        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request!) { (binary, response, err) in
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (binary, response, err) in
             
             let statusCode = (response as! HTTPURLResponse).statusCode
             print(statusCode)
@@ -156,6 +158,19 @@ class UserManager {
             
         }
         task.resume()
+        
+    }
+    
+    // NOTE: Luke Style Request
+    func testOfSpecificRide(id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) -> Void {
+        
+        provider.getSpecificRide(id: id, success: { (ride) in
+            
+            var rideObject = ride
+            
+            print(rideObject.driver)
+            
+        }, failure: failure)
         
     }
     

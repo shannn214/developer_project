@@ -22,6 +22,8 @@
 		093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093F4E0E212BB02D002131D7 /* R.generated.swift */; };
 		09445770212D671E005D1C1A /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0944576F212D671E005D1C1A /* URL.swift */; };
 		09547B57212D52D8008B151A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09547B56212D52D8008B151A /* Dictionary.swift */; };
+		0957D158213407230077D885 /* SHHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D157213407230077D885 /* SHHTTPResponse.swift */; };
+		0957D15B213408090077D885 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D15A213408090077D885 /* Ride.swift */; };
 		EB04A6EDF3B3625814EB5A16 /* Pods_TaxiGo_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		093F4E0E212BB02D002131D7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		0944576F212D671E005D1C1A /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		09547B56212D52D8008B151A /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		0957D157213407230077D885 /* SHHTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPResponse.swift; sourceTree = "<group>"; };
+		0957D15A213408090077D885 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaxiGo_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B2FAA7A9D9160DA223C47E /* Pods-TaxiGo_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE607CE0DEDF77C63E698D8 /* Pods-TaxiGo_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		093081A3212A9B8F00557600 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0957D159213407F90077D885 /* Ride */,
 				09547B55212D52C6008B151A /* Extension */,
 				093081B7212ABC4900557600 /* User */,
 				093081B3212AAE7D00557600 /* API */,
@@ -126,8 +131,9 @@
 		093081AA212A9F1600557600 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				093081A8212A9C8600557600 /* SHHTTPRequest.swift */,
 				093081AB212A9F6800557600 /* SHHTTPClient.swift */,
+				093081A8212A9C8600557600 /* SHHTTPRequest.swift */,
+				0957D157213407230077D885 /* SHHTTPResponse.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -203,6 +209,14 @@
 				0944576F212D671E005D1C1A /* URL.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0957D159213407F90077D885 /* Ride */ = {
+			isa = PBXGroup;
+			children = (
+				0957D15A213408090077D885 /* Ride.swift */,
+			);
+			path = Ride;
 			sourceTree = "<group>";
 		};
 		BC0CC6816512BB5ADDE42680 /* Frameworks */ = {
@@ -355,6 +369,7 @@
 				093081A7212A9BDA00557600 /* RideProvider.swift in Sources */,
 				09308192212A9B7B00557600 /* AppDelegate.swift in Sources */,
 				093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */,
+				0957D158213407230077D885 /* SHHTTPResponse.swift in Sources */,
 				09547B57212D52D8008B151A /* Dictionary.swift in Sources */,
 				093081A9212A9C8600557600 /* SHHTTPRequest.swift in Sources */,
 				093081B2212AA65000557600 /* TaxiGoError.swift in Sources */,
@@ -363,6 +378,7 @@
 				093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */,
 				093081AC212A9F6800557600 /* SHHTTPClient.swift in Sources */,
 				09445770212D671E005D1C1A /* URL.swift in Sources */,
+				0957D15B213408090077D885 /* Ride.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

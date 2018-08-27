@@ -22,6 +22,8 @@ class LoginPageViewController: UIViewController {
     
     let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
     
+    var userManager = UserManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,13 @@ class LoginPageViewController: UIViewController {
         
 //        UserManager.shared.shanDeleteRide(id: "/TUXdzd")
         
+
+        userManager.testOfSpecificRide(id: "POyQHX", success: { (ride) in
+            print(ride)
+        }) { (error) in
+            print("Noooooooo")
+            //TODO
+        }
         
         //tQdHHi
         //stQiyS

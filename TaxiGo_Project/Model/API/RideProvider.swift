@@ -12,17 +12,21 @@ private enum RideAPI: SHHTTPRequest {
     
     case getRides
     
-    case getSpecificRide
+    case getSpecificRide(String)
+    
+    case cancelRide(String)
+    
+    case requestARide([String: Any])
 
     func urlParameter() -> String {
         
         switch self {
             
-        case .getRides:
+        case .getRides, .requestARide:
             return "/ride"
             
-        case .getSpecificRide:
-            return "/ride/id"
+        case .getSpecificRide(let id), .cancelRide(let id):
+            return "/ride/\(id)"
             
         }
         
@@ -32,28 +36,78 @@ private enum RideAPI: SHHTTPRequest {
         
         switch self {
             
-        case .getRides:
+        case .getRides, .getSpecificRide:
             return .get
          
-        case .getSpecificRide :
-            return .get
+        case .requestARide:
+            return .post
+            
+        case .cancelRide:
+            return .delete
             
         }
         
     }
     
-    func requestHeader() -> [String : String] {
+    func requestBody() -> [String : Any] {
         
-        return requestHeader().self
+        switch self {
+        case .requestARide(let body):
+            return body
+        default:
+            return [:] // NOTE: 之後加 API 要注意會直接跳到 default
+        }
         
     }
+    
 }
 
 struct RideProvider {
     
     private weak var httpClient = SHHTTPClient.shared
     
-    func getRidesHistory() {
+    private let decoder = JSONDecoder()
+    
+    func getRidesHistory(success: @escaping (Data) -> Void,
+                         failure: @escaping (Error) -> Void) -> Void {
+        
+        
+        
+    }
+    
+    func getSpecificRide(id: String,
+                         success: @escaping (Ride) -> Void,
+                         failure: @escaping (Error) -> Void) -> Void {
+        
+        httpClient?.request(RideAPI.getSpecificRide("/\(id)"),
+                            success: { (data) in
+                                
+                                do {
+
+                                    let response = try self.decoder.decode(SHHTTPResponse<Ride>.self, from: data)
+                                    
+                                    success(response.data)
+
+                                } catch {
+//                                    TODO
+                                }
+            
+        },
+                            failure: { (error) in
+            //TODO
+        })
+        
+    }
+    
+    func requestARide(){
+        
+        
+        
+    }
+    
+    func cancelRide() {
+        
+        
         
     }
     
