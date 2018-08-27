@@ -54,55 +54,50 @@ class UserManager {
         
     }
     
-    func requestARide(latitude: Float, longitude: Float, address: String) {
+    func lovaStyleRequest(latitude: Float,
+                          longitude: Float,
+                          address: String,
+                          parameter: [String: Any], complete: ((Error?, [String: Any]?) -> Void)? = nil) -> URLSessionDataTask {
         
-        guard let url = URL(string: TGPConstans.taxiGoUrl + "/ride") else { return }
-        let session = URLSession.shared
+        let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride")
         
-        let userLocation: [String: Any] = ["start_latitude": latitude,
-                                           "start_longitude": longitude,
-                                           "start_address": address]
+        var request: URLRequest?
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
+        var params: [String: Any] = ["start_latitude": latitude,
+                                     "start_longitude": longitude,
+                                     "start_address": address]
         
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: userLocation, options: .prettyPrinted) else { return }
+        request = URLRequest(url: url!)
+        request?.httpMethod = "POST"
+        request?.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
-        request.httpBody = httpBody
+        let body = params.queryParameters
+        request?.httpBody = body.data(using: .utf8, allowLossyConversion: true)
         
-        session.dataTask(with: request) { (data, response, errpr) in
+        let token = "Bearer \(TGPConstans.token)"
+        request?.setValue(token, forHTTPHeaderField: "Authorization")
+        
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request!) { (binary, response, err) in
             
-            guard let response = response else { return }
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            print(statusCode)
+            print("======")
             
-            print("Request ride response: \(response)")
-            print("=======")
-            
-            guard let data = data else { return }
-            
-            do {
-                
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                print("Request ride JSON data: \(json)")
-                print("======")
-                
-            } catch {
-                print("Request ride JSON error: \(error)")
+            if let binary = binary, let json = try? JSONSerialization.jsonObject(with: binary, options: .allowFragments) as? [String: Any] {
+                print(binary)
+                print("------")
+                print(json)
             }
             
-        }.resume()
+        }
+        task.resume()
+        
+        return task
         
     }
     
-    
-//    https://api-sandbox.taxigo.io/v1/ride
-//    -H "Content-Type:application/json"
-//    -H "Authorization: Bearer user access token}" \
-//    -d start_latitude: 25.019946, start_longitude: 121.528717, start_address: 台北市羅斯福路三段162號}"
-    
-    
-    // NOTE: 先把東西要到在合併到 SHHTTPClient
+    // NOTE: This func includes two request: all rides and specific rides(with "id")
+    // NOTE: Only show the ongoing trip & reservation history, when the trip was finished or cancel, it wouldn't list in the data
     func getRidesHistory(id: String?) {
         
         guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id!) else { return }
@@ -130,9 +125,37 @@ class UserManager {
             } catch {
                 print("Get Rides History JSON error: \(error)")
             }
-            
+        
         }.resume()
         
+        
+    }
+    
+    func shanDeleteRide(id: String) {
+        
+        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, err) in
+            
+            guard let data = data else {
+                print("error calling delete")
+                return }
+            
+            print("Delete ok")
+            
+            if let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                print(data)
+                print("------")
+                print(json)
+            }
+            
+            
+        }
+        task.resume()
         
     }
     

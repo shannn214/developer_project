@@ -27,10 +27,21 @@ class LoginPageViewController: UIViewController {
 
 //        UserManager.shared.getUserToken(authCode: authCode)
         
-        UserManager.shared.requestARide(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號")
+//        UserManager.shared.requestARide(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號")
         
-//        UserManager.shared.getRidesHistory(id: "/ysGdzP")
-
+//        UserManager.shared.getRidesHistory(id: "")
+        
+//        UserManager.shared.lovaStyleRequest(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號", parameter: [:])
+        
+//        UserManager.shared.shanDeleteRide(id: "/TUXdzd")
+        
+        
+        //tQdHHi
+        //stQiyS
+//        POyQHX
+//        TxEVFx
+//        TUXdzd
+        
     }
 
     override func didReceiveMemoryWarning() {

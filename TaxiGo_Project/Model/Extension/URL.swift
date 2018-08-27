@@ -10,10 +10,6 @@ import Foundation
 
 extension URL {
     
-//    func addParameter(_ dict: [String: Any]) -> URL {
-//        
-//        return "\(self.absoluteString)?\(self.queryParameters(dict))".url!
-//        
-//    }
+    
     
 }
