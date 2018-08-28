@@ -18,22 +18,29 @@ class LoginPageViewController: UIViewController {
         LoginManager.shared.startLoginFlow()
         
     }
-    
+
     let paramsKey = "code"
     
     let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
+    
+    var location: RequestRideLocation?
     
 //    var userManager = UserManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let requestLocation = location
+        
 //        UserManager.shared.getUserToken(authCode: authCode)
                 
         UserManager.shared.getRidesHistory(id: "POyQHX")
 //        userManager.getRidesHistory(id: "POyQHX")
         
-//        UserManager.shared.lovaStyleRequest(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號", parameter: [:])
+//        UserManager.shared.lovaStyleRequest(location: requestLocation, parameter: [:])
+        
+        UserManager.shared.lovaStyleRequest(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號", parameter: [:])
         
 //        UserManager.shared.cancelRide(id: "/TUXdzd")
         

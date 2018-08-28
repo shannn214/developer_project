@@ -84,6 +84,22 @@ struct Ride: Codable {
     
 }
 
+struct RequestRideLocation {
+    
+    let startLatitude: Double
+    
+    let startLongitude: Double
+    
+    let startAddress: String
+    
+    let endLatitude: Double?
+    
+    let endLongitude: Double?
+    
+    let endAddress: String?
+    
+}
+
 
 
 

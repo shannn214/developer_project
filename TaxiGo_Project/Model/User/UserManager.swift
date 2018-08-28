@@ -70,14 +70,19 @@ struct UserManager {
         var params: [String: Any] = ["start_latitude": latitude,
                                      "start_longitude": longitude,
                                      "start_address": address]
-        let body = params.queryParameters
+        let body = params
         let token = "Bearer \(TGPConstans.token)"
 
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.addValue("application/json; charset=utf-8",
                          forHTTPHeaderField: "Content-Type")
-        request.httpBody = body.data(using: .utf8, allowLossyConversion: true)
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        } catch {
+            print("request error")
+        }
+        
         request.setValue(token, forHTTPHeaderField: "Authorization")
         
         let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (binary, response, err) in
@@ -90,13 +95,7 @@ struct UserManager {
             
             print(json!)
             
-//            guard let binary = binary else { return }
-//
-//            if let data = try? self.decoder.decode(Ride.self, from: binary) {
-//                print(data)
-//            } else {
-//                print("error nonononono")
-//            }
+
             
             
         }
@@ -133,11 +132,6 @@ struct UserManager {
 //                print("======")
                 
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
-//                print(json)
-                
-//                    guard let slatitude = json["status"] as? String else { return }
-//
-//                    print(slatitude)
         
                 let id = json["id"] as? String
                 let startLatitude = json["start_latitude"] as? Double
