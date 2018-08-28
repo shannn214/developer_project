@@ -14,7 +14,7 @@ struct TGPConstans {
     
     static let id = "id"
     
-    static let authPage = "https://dev-user.taxigo.com.tw/oauth/authorize?app_id=<APP_ID>&redirect_uri=<REDIRECT_URI>"
+    static let authPage = "https://user.taxigo.com.tw/oauth/authorize?app_id=<APP_ID>&redirect_uri=<REDIRECT_URI>"
     
     static let appID = "-LKPYysKDcIdNs7CLYa3"
     

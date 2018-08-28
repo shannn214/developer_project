@@ -22,23 +22,7 @@ class LoginManager: UIViewController {
     
     let code = "code"
     
-
-    func startAuthenticationFlow() {
-        
-        //NOTE: Test safari
-        guard let authURL = URL(string: TGPConstans.authURL) else { return }
-        
-        self.authViewController = SFSafariViewController.init(url: authURL)
-        delegate?.window?.rootViewController?.present(self.authViewController,
-                                                      animated: true,
-                                                      completion: nil)
-        
-        // NOTE: Cannot grab the code from URL
-        startAuthSession()
-        
-    }
-    
-    func startAuthSession() {
+    func startLoginFlow() {
                 
         guard let authURL = URL(string: TGPConstans.authURL) else { return }
         

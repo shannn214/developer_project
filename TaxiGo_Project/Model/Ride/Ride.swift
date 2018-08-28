@@ -10,17 +10,33 @@ import Foundation
 
 struct Driver: Codable {
     
-    let driver_id: Float
+    let driverId: Double
     
-    let driverLatitude: Float
+    let driverLatitude: Double
     
-    let driverLongitude: Float
+    let driverLongitude: Double
+    
+    let eta: Double
     
     let name: String
     
     let plateNumber: String
     
-    let vehicle:String
+    let vehicle: String
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case driverId = "driver_id"
+        
+        case driverLatitude = "driver_latitude"
+        
+        case driverLongitude = "driver_longitude"
+        
+        case plateNumber = "plate_number"
+        
+        case eta, name, vehicle
+        
+    }
 
 }
 
@@ -28,23 +44,23 @@ struct Ride: Codable {
     
     let id: String
     
-    let startLatitude: Float
+    let startLatitude: Double
     
-    let startLongitude: Float
+    let startLongitude: Double
     
     let startAddress: String
     
-    let endLatitude: Float?
+    let endLatitude: Double?
     
-    let endLongitude: Float?
+    let endLongitude: Double?
     
     let endAddress: String?
     
-    let requestTime: String
+    let requestTime: Double
     
     let status: String
     
-    let driver: Driver?
+//    let driver: Driver?
     
     private enum CodingKeys: String, CodingKey {
         
@@ -62,7 +78,7 @@ struct Ride: Codable {
         
         case requestTime = "request_time"
         
-        case id, status, driver
+        case id, status
         
     }
     

@@ -14,36 +14,36 @@ class LoginPageViewController: UIViewController {
     @IBOutlet weak var testbtn: UIButton!
     
     @IBAction func testButton(_ sender: Any) {
-        
-        LoginManager.shared.startAuthenticationFlow()
+                
+        LoginManager.shared.startLoginFlow()
         
     }
+    
     let paramsKey = "code"
     
     let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
     
-    var userManager = UserManager()
+//    var userManager = UserManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        UserManager.shared.getUserToken(authCode: authCode)
-        
-//        UserManager.shared.requestARide(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號")
-        
-//        UserManager.shared.getRidesHistory(id: "")
+                
+        UserManager.shared.getRidesHistory(id: "POyQHX")
+//        userManager.getRidesHistory(id: "POyQHX")
         
 //        UserManager.shared.lovaStyleRequest(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號", parameter: [:])
         
-//        UserManager.shared.shanDeleteRide(id: "/TUXdzd")
+//        UserManager.shared.cancelRide(id: "/TUXdzd")
         
 
-        userManager.testOfSpecificRide(id: "POyQHX", success: { (ride) in
-            print(ride)
-        }) { (error) in
-            print("Noooooooo")
-            //TODO
-        }
+//        userManager.testOfSpecificRide(id: "POyQHX", success: { (ride) in
+//            print(ride)
+//        }) { (error) in
+//            print("Noooooooo")
+//            //TODO
+//        }
         
         //tQdHHi
         //stQiyS

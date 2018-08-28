@@ -21,18 +21,18 @@ class SHHTTPClient {
     }
     
     @discardableResult
-    func request(_ request: SHHTTPRequest,
+    func request(_ HTTPRequest: SHHTTPRequest,
                  success: @escaping (Data) -> Void,
-                 failure: @escaping (Error) -> Void) -> URLSessionDataTask? {
+                 failure: @escaping (Error) -> Void) -> URLRequest? {
 
-//        do {
-//            return try request(request.request(), success: success, failure: failure)
-//        } catch {
-//            failure(error)
-//            return nil
-//        }
-
-        return nil
+        do {
+            // NOTE: HTTPRequest can't work
+            return try request(HTTPRequest.request() as! SHHTTPRequest, success: success,failure: failure)
+        } catch {
+            failure(error)
+            print("HTTPClient request failed.")
+            return nil
+        }
         
     }
     

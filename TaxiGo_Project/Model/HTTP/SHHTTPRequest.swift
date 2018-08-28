@@ -34,6 +34,8 @@ enum SHHTTPContentType: String {
 
 protocol SHHTTPRequest {
     
+    func customHeader() -> [String: String]
+    
     func httpMethod() -> SHHTTPMethod
     
     func urlParameter() -> String
@@ -86,6 +88,8 @@ extension SHHTTPRequest {
         
         let url = URL(string: urlString())
         
+        let body = requestBody().queryParameters
+        
         guard let taxiGoUrl = url else { throw TaxiGoError.serverError }
         
         var request = URLRequest(url: taxiGoUrl)
@@ -94,8 +98,7 @@ extension SHHTTPRequest {
         
         request.httpMethod = httpMethod().rawValue
         
-        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody(),
-                                                      options: .prettyPrinted)
+        request.httpBody = body.data(using: .utf8, allowLossyConversion: true)
         
         return request
         
