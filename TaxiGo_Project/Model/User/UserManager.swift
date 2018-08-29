@@ -197,5 +197,77 @@ struct UserManager {
         
     }
     
+    func getRiderInfo() {
+        
+        guard let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "/me") else { return }
+        let token = "Bearer \(TGPConstans.token)"
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json",
+                         forHTTPHeaderField: "Content-Type")
+        
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            guard let response = response else { return }
+            
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            print("Rider Status Code: \(statusCode)")
+            
+            do {
+                
+                guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
+                
+                print(json)
+                print("=====")
+                
+            } catch {
+                
+                print("failed to get rider info.")
+                
+            }
+            
+        }
+        task.resume()
+        
+    }
+    
+    func getNearbyDrivers(lat: Double, lng: Double) {
+        
+        guard let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "/driver?lat=\(lat)&lng=\(lng)") else { return }
+        let token = "Bearer \(TGPConstans.token)"
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json",
+                         forHTTPHeaderField: "Content-Type")
+        
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            guard let response = response else { return }
+            
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            print("Nearby Status Code: \(statusCode)")
+            
+            do {
+                
+                guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] else { return }
+                
+                print(json)
+                print("=====")
+                
+            } catch {
+                
+                print("failed to get rider info.")
+                
+            }
+            
+        }
+        task.resume()
+        
+    }
+    
     
 }

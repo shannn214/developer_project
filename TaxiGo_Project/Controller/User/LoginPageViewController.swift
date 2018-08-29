@@ -62,7 +62,8 @@ class LoginPageViewController: UIViewController {
 //            print("request failed.")
 //        }
         
-        
+        UserManager.shared.getRiderInfo()
+        UserManager.shared.getNearbyDrivers(lat: 25.019946, lng: 121.528717)
         
         //tQdHHi
         //stQiyS
