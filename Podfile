@@ -7,6 +7,8 @@ target 'TaxiGo_Project' do
 
 pod 'R.swift'
 pod 'SwifterSwift'
+pod 'RxSwift',    '~> 4.0'
+pod 'RxCocoa',    '~> 4.0'
 
   # Pods for TaxiGo_Project
 

@@ -169,7 +169,6 @@ struct UserManager {
         
     }
     
-    // NOTE: This func includes two request: all rides and specific rides(with "id")
     // NOTE: Only show the ongoing trip & reservation history, when the trip was finished or cancel, it wouldn't list in the data
     func getHistory(id: String?) {
         
@@ -191,10 +190,6 @@ struct UserManager {
             guard let data = data else { return }
                         
             do {
-
-//                let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                print("Get Rides History JSON data: \(json)")
-//                print("======")
                 
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
         
@@ -261,60 +256,6 @@ struct UserManager {
             
         }
         task.resume()
-        
-    }
-    
-    // NOTE: Luke Style Request
-    func testOfSpecificRide(id: String, success: @escaping (Ride) -> Void, failure: @escaping (Error) -> Void) -> Void {
-        
-        provider.getSpecificRide(id: id, success: { (ride) in
-            
-            var rideObject = ride
-            
-//            print(rideObject.driver)
-            
-        }, failure: failure)
-        
-    }
-    
-    
-    // NOTE: Use authorization code to get Redirect
-    // TODO: Need to find out how to get code from URL first
-    
-    func getRedirect(params: [String: String]) {
-        
-//        let urlComp = NSURLComponents(string: "https://https://dev-user.taxigo.com.tw/oauth/test")
-//
-//        var items = [URLQueryItem]()
-//
-//        for (key, value) in params {
-//
-//            items.append(URLQueryItem(name: key, value: value))
-//
-//        }
-//
-//        items = items.filter({ !$0.name.isEmpty })
-//
-//        if !items.isEmpty {
-//
-//            urlComp?.queryItems = items
-//
-//        }
-//
-//        var urlRequest = URLRequest(url: (urlComp?.url)!)
-//
-//        urlRequest.httpMethod = "GET"
-//
-//        let config = URLSessionConfiguration.default
-//
-//        let session = URLSession(configuration: config)
-//
-//        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-//
-//            print(data)
-//
-//        }
-//        task.resume()
         
     }
     
