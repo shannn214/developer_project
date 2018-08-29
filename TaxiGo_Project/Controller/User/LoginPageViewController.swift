@@ -51,16 +51,16 @@ class LoginPageViewController: UIViewController {
         
 //        fakeSendLocationBtn(startLatitude: 25.019946, startLongitude: 121.528717, startAddress: "台北市羅斯福路三段162號")
         
-        UserManager.shared.getRidesHistory(id: "POyQHX", success: { (ride, driver) in
-            if ride != nil {
-                print(ride)
-            }
-            if driver != nil {
-                print(driver)
-            }
-        }) { (err) in
-            print("request failed.")
-        }
+//        UserManager.shared.getRidesHistory(id: "POyQHX", success: { (ride, driver) in
+//            if ride != nil {
+//                print(ride)
+//            }
+//            if driver != nil {
+//                print(driver)
+//            }
+//        }) { (err) in
+//            print("request failed.")
+//        }
         
         
         

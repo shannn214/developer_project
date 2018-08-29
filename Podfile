@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'TaxiGo_Project' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -9,6 +9,8 @@ pod 'R.swift'
 pod 'SwifterSwift'
 pod 'RxSwift',    '~> 4.0'
 pod 'RxCocoa',    '~> 4.0'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
   # Pods for TaxiGo_Project
 

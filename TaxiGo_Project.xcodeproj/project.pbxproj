@@ -21,6 +21,9 @@
 		093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081BD212ACCE200557600 /* LoginPageViewController.swift */; };
 		093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093F4E0E212BB02D002131D7 /* R.generated.swift */; };
 		09445770212D671E005D1C1A /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0944576F212D671E005D1C1A /* URL.swift */; };
+		094AA986213679390049CD2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 094AA985213679390049CD2C /* Map.storyboard */; };
+		094AA9892136796D0049CD2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA9882136796D0049CD2C /* MapViewController.swift */; };
+		094AA98B213680200049CD2C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA98A213680200049CD2C /* Resource.swift */; };
 		09547B57212D52D8008B151A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09547B56212D52D8008B151A /* Dictionary.swift */; };
 		0957D158213407230077D885 /* SHHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D157213407230077D885 /* SHHTTPResponse.swift */; };
 		0957D15B213408090077D885 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D15A213408090077D885 /* Ride.swift */; };
@@ -44,6 +47,9 @@
 		093081BD212ACCE200557600 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		093F4E0E212BB02D002131D7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		0944576F212D671E005D1C1A /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		094AA985213679390049CD2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		094AA9882136796D0049CD2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		094AA98A213680200049CD2C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		09547B56212D52D8008B151A /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		0957D157213407230077D885 /* SHHTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPResponse.swift; sourceTree = "<group>"; };
 		0957D15A213408090077D885 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		093081A5212A9B9E00557600 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				094AA987213679580049CD2C /* Map */,
 				093081BC212ACCC400557600 /* User */,
 			);
 			path = Controller;
@@ -166,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				09308195212A9B7B00557600 /* Main.storyboard */,
+				094AA985213679390049CD2C /* Map.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 		093F4E0C212BAFAC002131D7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				094AA98A213680200049CD2C /* Resource.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -200,6 +209,14 @@
 				093F4E0E212BB02D002131D7 /* R.generated.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		094AA987213679580049CD2C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				094AA9882136796D0049CD2C /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		09547B55212D52C6008B151A /* Extension */ = {
@@ -249,6 +266,7 @@
 				0930818B212A9B7B00557600 /* Frameworks */,
 				0930818C212A9B7B00557600 /* Resources */,
 				B923428EAAE27567794961AE /* [CP] Embed Pods Frameworks */,
+				C30D4C85D211A7A0AB2DDAC2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,6 +318,7 @@
 				0930819C212A9B7D00557600 /* LaunchScreen.storyboard in Resources */,
 				09308199212A9B7D00557600 /* Assets.xcassets in Resources */,
 				09308197212A9B7B00557600 /* Main.storyboard in Resources */,
+				094AA986213679390049CD2C /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +363,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C30D4C85D211A7A0AB2DDAC2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F2464A93F0406029565EBF63 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				093081AF212AA4A000557600 /* Constants.swift in Sources */,
+				094AA98B213680200049CD2C /* Resource.swift in Sources */,
 				093081A7212A9BDA00557600 /* RideProvider.swift in Sources */,
 				09308192212A9B7B00557600 /* AppDelegate.swift in Sources */,
 				093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */,
@@ -382,6 +422,7 @@
 				093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */,
 				093081AC212A9F6800557600 /* SHHTTPClient.swift in Sources */,
 				09445770212D671E005D1C1A /* URL.swift in Sources */,
+				094AA9892136796D0049CD2C /* MapViewController.swift in Sources */,
 				0957D15B213408090077D885 /* Ride.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,8 +571,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Shannn.TaxiGo-Project";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -546,8 +590,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Shannn.TaxiGo-Project";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

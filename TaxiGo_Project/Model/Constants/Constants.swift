@@ -10,7 +10,7 @@ import Foundation
 
 struct TGPConstans {
     
-    static let taxiGoUrl = "https://api-sandbox.taxigo.io/v1/ride"
+    static let taxiGoUrl = "https://api-sandbox.taxigo.io/v1"
     
     static let id = "id"
     
