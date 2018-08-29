@@ -11,6 +11,12 @@ import SwifterSwift
 
 struct UserManager {
     
+    typealias Success = () -> Void
+    typealias SuccessString = (_ string: String) -> Void
+    typealias SuccessDict = (_ data: [String: Any]) -> Void
+    
+    typealias Failure = (_ err: Error) -> Void
+    
     private init(){}
     
     static let shared = UserManager()
@@ -60,43 +66,101 @@ struct UserManager {
         
     }
     
-    func lovaStyleRequest(latitude: Float,
-                          longitude: Float,
-                          address: String,
-                          parameter: [String: Any], complete: ((Error?, [String: Any]?) -> Void)? = nil) -> URLSessionDataTask {
+    func requestARide(param: [String: Any],
+                      success: @escaping (Ride?, Driver?) -> Void,
+                      failure: @escaping (Error) -> Void) {
         
-        let url = URL(string: TGPConstans.taxiGoUrl + "/ride")
+        call(.post, path: "", parameter: param) { (err, ride, driver) in
+            if err == nil {
+                success(ride, driver)
+            } else if let err = err {
+                failure(err)
+            }
+        }
         
-        var params: [String: Any] = ["start_latitude": latitude,
-                                     "start_longitude": longitude,
-                                     "start_address": address]
-        let body = params
+        
+    }
+    
+    func getRidesHistory(id: String,
+                         success: @escaping (Ride?, Driver?) -> Void,
+                         failure: @escaping (Error) -> Void) {
+        
+        call(.get, path: "/\(id)", parameter: [:]) { (err, ride, driver) in
+            if err == nil {
+                success(ride, driver)
+            } else if let err = err {
+                failure(err)
+            }
+        }
+        
+    }
+    
+    func call(_ method: SHHTTPMethod, path: String?, parameter: [String: Any], complete: ((Error?, Ride?, Driver?) -> Void)? = nil) -> URLSessionDataTask {
+        
+        let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "\(path ?? "")")
+        let body = parameter
         let token = "Bearer \(TGPConstans.token)"
 
         var request = URLRequest(url: url!)
-        request.httpMethod = "POST"
+        request.httpMethod = method.rawValue
+        request.setValue(token, forHTTPHeaderField: "Authorization")
         request.addValue("application/json; charset=utf-8",
                          forHTTPHeaderField: "Content-Type")
+        
+        //send body
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
         } catch {
             print("request error")
         }
         
-        request.setValue(token, forHTTPHeaderField: "Authorization")
-        
-        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (binary, response, err) in
+        //callback
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, err) in
+            
+            guard let response = response else { return }
             
             let statusCode = (response as! HTTPURLResponse).statusCode
             print("Status Code: \(statusCode)")
-            print("======")
+            print("=====")
             
-            guard let binary = binary, let json = try? JSONSerialization.jsonObject(with: binary, options: .allowFragments) as? [String: Any] else { return }
-            
-            print(json!)
-            
-
-            
+            do {
+                
+                guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
+                
+                let id = json["id"] as? String
+                let startLatitude = json["start_latitude"] as? Double
+                let startLongitude = json["start_longitude"] as? Double
+                let startAddress = json["start_address"] as? String
+                let endLatitude = json["end_latitude"] as? Double ?? 0
+                let endLongitude = json["end_longitude"] as? Double ?? 0
+                let endAddress = json["end_address"] as? String ?? ""
+                let requestTime = json["request_time"] as? Double
+                let status = json["status"] as? String
+                
+                let ride = Ride(id: id!, startLatitude: startLatitude!, startLongitude: startLongitude!, startAddress: startAddress!, endLatitude: endLatitude, endLongitude: endLongitude, endAddress: endAddress, requestTime: requestTime!, status: status!)
+                
+                print(ride)
+                
+                if let driver = json["driver"] as? [String: Any] ?? nil {
+                    let driverId = driver["driver_id"] as? Double
+                    let driverLatitude = driver["driver_latitude"] as? Double
+                    let driverLongitude = driver["driver_longitude"] as? Double
+                    let eta = driver["eta"] as? Double
+                    let name = driver["name"] as? String
+                    let plateNumber = driver["plate_number"] as? String
+                    let vehicle = driver["vehicle"] as? String
+                    
+                    let driverInfo = Driver(driverId: driverId!, driverLatitude: driverLatitude!, driverLongitude: driverLongitude!, eta: eta!, name: name!, plateNumber: plateNumber!, vehicle: vehicle!)
+                    
+                    print(driverInfo)
+                    
+                    complete?(nil, ride, driverInfo)
+                }
+                
+                
+            } catch {
+                print("Get Rides History JSON error: \(error)")
+            }
             
         }
         task.resume()
@@ -107,7 +171,7 @@ struct UserManager {
     
     // NOTE: This func includes two request: all rides and specific rides(with "id")
     // NOTE: Only show the ongoing trip & reservation history, when the trip was finished or cancel, it wouldn't list in the data
-    func getRidesHistory(id: String?) {
+    func getHistory(id: String?) {
         
         guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride/" + id!) else { return }
         let session = URLSession.shared
@@ -120,7 +184,8 @@ struct UserManager {
             
             guard let response = response else { return }
             
-            print("Response of Get Rides History: \(response)")
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            print("Status Code: \(statusCode)")
             print("=====")
             
             guard let data = data else { return }
