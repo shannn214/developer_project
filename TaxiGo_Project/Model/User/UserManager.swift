@@ -14,6 +14,7 @@ struct UserManager {
     typealias Success = () -> Void
     typealias SuccessString = (_ string: String) -> Void
     typealias SuccessDict = (_ data: [String: Any]) -> Void
+    typealias SuccessArray = (_ array: [[String: Any]]) -> Void
     
     typealias Failure = (_ err: Error) -> Void
     
@@ -169,69 +170,236 @@ struct UserManager {
         
     }
     
-    func cancelRide(id: String) {
+    // Rewrite call function by using [:] type ------
+    func rewriteCall(_ method: SHHTTPMethod, path: String?, parameter: [String: Any], complete: ((Error?, [String: Any]?, [[String: Any]]?) -> Void)? = nil) -> URLSessionDataTask {
         
-        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, err) in
-            
-            guard let data = data else {
-                print("error calling delete")
-                return }
-            
-            print("Delete ok")
-            
-            if let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
-                print(data)
-                print("------")
-                print(json)
-            }
-            
-            
-        }
-        task.resume()
-        
-    }
-    
-    func getRiderInfo() {
-        
-        guard let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "/me") else { return }
+        let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "\(path ?? "")")
+        let body = parameter
         let token = "Bearer \(TGPConstans.token)"
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        var request = URLRequest(url: url!)
+        request.httpMethod = method.rawValue
         request.setValue(token, forHTTPHeaderField: "Authorization")
-        request.addValue("application/json",
+        request.addValue("application/json; charset=utf-8",
                          forHTTPHeaderField: "Content-Type")
         
+        //send body
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        } catch {
+            print("request error")
+        }
+        
+        //callback
         let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let response = response else { return }
-            
             let statusCode = (response as! HTTPURLResponse).statusCode
-            print("Rider Status Code: \(statusCode)")
+            print("Status Code: \(statusCode)")
+            print("=====")
             
-            do {
-                
-                guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
-                
-                print(json)
-                print("=====")
-                
-            } catch {
-                
-                print("failed to get rider info.")
-                
+            DispatchQueue.main.async {
+              
+                do {
+                    
+                    if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                        complete?(nil, json, nil)
+                    } else if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+                        print(json)
+                        print("====")
+                        complete?(nil, nil, json)
+                    }
+                    
+                } catch {
+                    
+                    complete?(error, nil, nil)
+                    
+                }
             }
             
         }
         task.resume()
         
+        return task
     }
+    
+    //ok
+    func rewriteRequestARide(param: [String: Any],
+                             success: @escaping (Ride?) -> Void,
+                             failure: @escaping (Error) -> Void) {
+        
+        rewriteCall(.post, path: "/ride", parameter: param) { (err, data, array) in
+            
+            if err == nil {
+
+                success(rideData(data: data))
+                
+            } else if let err = err {
+                
+                failure(err)
+                print("QQ failed.")
+                
+            }
+            
+        }
+        
+    }
+    
+    //ok
+    func rewriteGetHistory(id: String,
+                           success: @escaping (Ride?, Driver?) -> Void,
+                           failure: @escaping (Error) -> Void) {
+        
+        rewriteCall(.get, path: "/ride\(id)", parameter: [:]) { (err, data, array) in
+            
+            if err == nil {
+                
+                success(rideData(data: data), driverData(data: data))
+                
+            } else if let err = err {
+                
+                failure(err)
+                print("QQ failed.")
+                
+            }
+            
+        }
+        
+    }
+    
+    //ok
+    func rewriteGetRiderInfo(success: @escaping (Rider?) -> Void,
+                             failure: @escaping (Error) -> Void) {
+        
+        rewriteCall(.get, path: "/me", parameter: [:]) { (err, data, array) in
+            
+            if err == nil {
+
+                success(riderData(data: data))
+                
+            } else if let err = err {
+                
+                failure(err)
+                print("get rider info failed.")
+                
+            }
+            
+        }
+        
+    }
+    
+    func rewriteNearbyDriver(lat: Double,
+                             lng: Double,
+                             success: @escaping ([NearbyDrivers]?) -> Void,
+                             failure: @escaping (Error) -> Void) {
+        
+        rewriteCall(.get, path: "/driver?lat=\(lat)&lng=\(lng)", parameter: [:]) { (err, data, array) in
+            
+            if err == nil {
+                
+                print(array)
+//                success(nearbyDriversData(data: array))
+                
+            } else if let err = err {
+                
+                failure(err)
+                print("get rider info failed.")
+                
+            }
+            
+        }
+        
+    }
+    
+    //ok
+    func rewriteCancelRide(id: String,
+                           success: @escaping (String) -> Void,
+                           failure: @escaping (Error) -> Void) {
+        
+        rewriteCall(.delete, path: "/ride\(id)", parameter: [:]) { (err, data, array) in
+            
+            if err == nil {
+                
+                print("Delete")
+                print(data)
+                
+            } else if let err = err {
+                
+                failure(err)
+                print("get rider info failed.")
+                
+            }
+            
+        }
+        
+    }
+    
+    //-----
+    
+    
+//    func cancelRide(id: String) {
+//
+//        guard let url = URL(string: "https://api-sandbox.taxigo.io/v1/ride" + id) else { return }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "DELETE"
+//        request.setValue("Bearer \(TGPConstans.token)", forHTTPHeaderField: "Authorization")
+//
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (data, response, err) in
+//
+//            guard let data = data else {
+//                print("error calling delete")
+//                return }
+//
+//            print("Delete ok")
+//
+//            if let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+//                print(data)
+//                print("------")
+//                print(json)
+//            }
+//
+//
+//        }
+//        task.resume()
+//
+//    }
+    
+//    func getRiderInfo() {
+//
+//        guard let url = URL(string: "\(TGPConstans.taxiGoUrl)" + "/me") else { return }
+//        let token = "Bearer \(TGPConstans.token)"
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        request.setValue(token, forHTTPHeaderField: "Authorization")
+//        request.addValue("application/json",
+//                         forHTTPHeaderField: "Content-Type")
+//
+//        let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//
+//            guard let response = response else { return }
+//
+//            let statusCode = (response as! HTTPURLResponse).statusCode
+//            print("Rider Status Code: \(statusCode)")
+//
+//            do {
+//
+//                guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
+//
+//                print(json)
+//                print("=====")
+//
+//            } catch {
+//
+//                print("failed to get rider info.")
+//
+//            }
+//
+//        }
+//        task.resume()
+//
+//    }
     
     func getNearbyDrivers(lat: Double, lng: Double) {
         
@@ -256,7 +424,7 @@ struct UserManager {
                 guard let data = data, let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] else { return }
                 
                 print(json)
-                print("=====")
+                print("==old function===")
                 
             } catch {
                 

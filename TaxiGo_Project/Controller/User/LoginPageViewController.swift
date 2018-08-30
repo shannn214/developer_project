@@ -62,14 +62,33 @@ class LoginPageViewController: UIViewController {
 //            print("request failed.")
 //        }
         
-        UserManager.shared.getRiderInfo()
+//        UserManager.shared.getRiderInfo()
         UserManager.shared.getNearbyDrivers(lat: 25.019946, lng: 121.528717)
+        
+//        UserManager.shared.rewriteGetRiderInfo(success: { (rider) in
+//            print(rider)
+//        }) { (err) in
+//            print("NONONO")
+//        }
+        
+        UserManager.shared.rewriteNearbyDriver(lat: 25.019946, lng: 121.528717, success: { (drivers) in
+            print(drivers)
+        }) { (err) in
+            print("can't get nearby drivers")
+        }
+        
+        UserManager.shared.rewriteCancelRide(id: "/QJxkGx", success: { (_) in
+            print("backkkkkk")
+        }) { (err) in
+            print(err)
+        }
         
         //tQdHHi
         //stQiyS
 //        POyQHX
 //        TxEVFx
 //        TUXdzd
+
         
     }
 
@@ -92,15 +111,12 @@ class LoginPageViewController: UIViewController {
                                     "end_longitude": endLongitude,
                                     "end_address": endAddress]
         
-        UserManager.shared.requestARide(param: param, success: { (ride, driver) in
+        UserManager.shared.rewriteRequestARide(param: param, success: { (ride) in
             if ride != nil {
                 print(ride)
             }
-            if driver != nil {
-                print(driver)
-            }
         }) { (err) in
-            print("request failed.")
+            print("NONONO")
         }
         
     }

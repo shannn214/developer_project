@@ -84,6 +84,34 @@ struct Ride: Codable {
     
 }
 
+struct Rider {
+    
+    let name: String
+    
+    let profileImg: String?
+    
+    let favorite: [Favorite]?
+    
+}
+
+struct Favorite {
+    
+    let address: String
+    
+    let lat: Double
+    
+    let lng: Double
+    
+}
+
+struct NearbyDrivers {
+    
+    let lat: Double
+    
+    let lng: Double
+    
+}
+
 struct RequestRideLocation {
     
     let startLatitude: Double

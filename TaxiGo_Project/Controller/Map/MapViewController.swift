@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
 //    latitude: 25.019946, longitude: 121.528717
     func showSpot() {
         
-        let camera = GMSCameraPosition.camera(withLatitude: 25.019946, longitude: 121.528717, zoom: 0.6)
+        let camera = GMSCameraPosition.camera(withLatitude: 25.019946, longitude: 121.528717, zoom: 16.0)
         self.mapView.camera = camera
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(25.019946, 121.528717)

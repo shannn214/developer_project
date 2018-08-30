@@ -21,6 +21,7 @@
 		093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093081BD212ACCE200557600 /* LoginPageViewController.swift */; };
 		093F4E0F212BB02D002131D7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093F4E0E212BB02D002131D7 /* R.generated.swift */; };
 		09445770212D671E005D1C1A /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0944576F212D671E005D1C1A /* URL.swift */; };
+		094A534C2137A69D00759772 /* Manage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A534B2137A69D00759772 /* Manage.swift */; };
 		094AA986213679390049CD2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 094AA985213679390049CD2C /* Map.storyboard */; };
 		094AA9892136796D0049CD2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA9882136796D0049CD2C /* MapViewController.swift */; };
 		094AA98B213680200049CD2C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA98A213680200049CD2C /* Resource.swift */; };
@@ -47,6 +48,7 @@
 		093081BD212ACCE200557600 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		093F4E0E212BB02D002131D7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		0944576F212D671E005D1C1A /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		094A534B2137A69D00759772 /* Manage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manage.swift; sourceTree = "<group>"; };
 		094AA985213679390049CD2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		094AA9882136796D0049CD2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		094AA98A213680200049CD2C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				093081AB212A9F6800557600 /* SHHTTPClient.swift */,
 				093081A8212A9C8600557600 /* SHHTTPRequest.swift */,
 				0957D157213407230077D885 /* SHHTTPResponse.swift */,
+				094A534B2137A69D00759772 /* Manage.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				093081AF212AA4A000557600 /* Constants.swift in Sources */,
+				094A534C2137A69D00759772 /* Manage.swift in Sources */,
 				094AA98B213680200049CD2C /* Resource.swift in Sources */,
 				093081A7212A9BDA00557600 /* RideProvider.swift in Sources */,
 				09308192212A9B7B00557600 /* AppDelegate.swift in Sources */,
