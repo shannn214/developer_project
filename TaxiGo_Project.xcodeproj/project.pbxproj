@@ -126,6 +126,7 @@
 		093081A4212A9B9800557600 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				094B6D08213930CA00DD32EF /* Map */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +222,13 @@
 			children = (
 				094AA9882136796D0049CD2C /* MapViewController.swift */,
 				094B6D06213916C600DD32EF /* PlacesViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		094B6D08213930CA00DD32EF /* Map */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -581,7 +589,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -597,7 +608,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

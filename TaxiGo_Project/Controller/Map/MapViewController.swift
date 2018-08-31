@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import GooglePlacePicker
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
@@ -27,6 +28,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var likePlaces: [GMSPlace] = []
     
     var selectedPlace: GMSPlace?
+    
+    private var place: GMSPlace
+
+    init(place: GMSPlace) {
+        self.place = place
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,12 +82,20 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
         let secondPosition = CLLocationCoordinate2D(latitude: 25.030992, longitude: 121.563741)
-        let marker = GMSMarker(position: position)
-        let secondMarker = GMSMarker(position: secondPosition)
+//        let marker = GMSMarker(position: position)
+//        let secondMarker = GMSMarker(position: secondPosition)
 //        marker.map = self.mapView
 //        marker.title = "YAHAHA" //should modify the shape
 //        secondMarker.map = self.mapView
 //        marker.tracksViewChanges = true //increase battery isage
+        
+        let marker = GMSMarker(position: place.coordinate)
+        marker.map = mapView
+        mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        mapView.isUserInteractionEnabled = false
+        
+        print("=====")
+        print(place.coordinate)
         
         
     }
@@ -92,17 +112,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         infoMarker.map = mapView
         mapView.selectedMarker = infoMarker
         
-        
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination == "seguaToSelect" {
-            if let nextVC = segue.destination as? PlacesViewController {
-                
-            }
-        }
-    }
-    
     
 }
 
@@ -170,6 +180,19 @@ extension MapViewController: CLLocationManagerDelegate {
         }
         
     }
+    
+}
+
+extension MapViewController: GMSPlacePickerViewControllerDelegate {
+    
+    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+        
+        self.place = place
+        
+    }
+    
+    
+    
     
 }
 
