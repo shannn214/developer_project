@@ -11,6 +11,7 @@ pod 'RxSwift',    '~> 4.0'
 pod 'RxCocoa',    '~> 4.0'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'GooglePlacePicker'
 
   # Pods for TaxiGo_Project
 

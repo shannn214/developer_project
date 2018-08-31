@@ -24,46 +24,16 @@ class LoginPageViewController: UIViewController {
     let authCode = "jNhArR3v6SrWEbGegOjNxfzEjc"
     
     var location: RequestRideLocation?
-    
-//    var userManager = UserManager()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        UserManager.shared.getUserToken(authCode: authCode)
-                
-//        UserManager.shared.getRidesHistory(id: "POyQHX")
-        
-//        UserManager.shared.lovaStyleRequest(location: requestLocation, parameter: [:])
-        
-//        UserManager.shared.requestARide(latitude: 25.019946, longitude: 121.528717, address: "台北市羅斯福路三段162號", parameter: [:])
-        
-//        UserManager.shared.cancelRide(id: "/TUXdzd")
-        
-//        UserManager.shared.requestARide(startLatitude: 25.019946, startLongitude: 121.528717, startAddress: "台北市羅斯福路三段162號", endLatitude: nil, endLongitude: nil, endAddress: nil, success: { (ride) in
-//            if ride != nil {
-//                print("request success")
-//                print(ride)
-//            }
-//        }) { (err) in
-//            print("request failed")
-//        }
         
 //        fakeSendLocationBtn(startLatitude: 25.019946, startLongitude: 121.528717, startAddress: "台北市羅斯福路三段162號")
+
         
-//        UserManager.shared.getRidesHistory(id: "POyQHX", success: { (ride, driver) in
-//            if ride != nil {
-//                print(ride)
-//            }
-//            if driver != nil {
-//                print(driver)
-//            }
-//        }) { (err) in
-//            print("request failed.")
-//        }
-        
-//        UserManager.shared.getRiderInfo()
-        UserManager.shared.getNearbyDrivers(lat: 25.019946, lng: 121.528717)
+//        UserManager.shared.getNearbyDrivers(lat: 25.019946, lng: 121.528717)
         
 //        UserManager.shared.rewriteGetRiderInfo(success: { (rider) in
 //            print(rider)
@@ -77,11 +47,11 @@ class LoginPageViewController: UIViewController {
             print("can't get nearby drivers")
         }
         
-        UserManager.shared.rewriteCancelRide(id: "/QJxkGx", success: { (_) in
-            print("backkkkkk")
-        }) { (err) in
-            print(err)
-        }
+//        UserManager.shared.rewriteCancelRide(id: "/QJxkGx", success: { (_) in
+//            print("backkkkkk")
+//        }) { (err) in
+//            print(err)
+//        }
         
         //tQdHHi
         //stQiyS

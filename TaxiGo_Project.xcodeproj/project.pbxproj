@@ -25,6 +25,7 @@
 		094AA986213679390049CD2C /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 094AA985213679390049CD2C /* Map.storyboard */; };
 		094AA9892136796D0049CD2C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA9882136796D0049CD2C /* MapViewController.swift */; };
 		094AA98B213680200049CD2C /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA98A213680200049CD2C /* Resource.swift */; };
+		094B6D07213916C600DD32EF /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094B6D06213916C600DD32EF /* PlacesViewController.swift */; };
 		09547B57212D52D8008B151A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09547B56212D52D8008B151A /* Dictionary.swift */; };
 		0957D158213407230077D885 /* SHHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D157213407230077D885 /* SHHTTPResponse.swift */; };
 		0957D15B213408090077D885 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D15A213408090077D885 /* Ride.swift */; };
@@ -52,6 +53,7 @@
 		094AA985213679390049CD2C /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		094AA9882136796D0049CD2C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		094AA98A213680200049CD2C /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		094B6D06213916C600DD32EF /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		09547B56212D52D8008B151A /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		0957D157213407230077D885 /* SHHTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPResponse.swift; sourceTree = "<group>"; };
 		0957D15A213408090077D885 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				094AA9882136796D0049CD2C /* MapViewController.swift */,
+				094B6D06213916C600DD32EF /* PlacesViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -374,11 +377,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				094B6D07213916C600DD32EF /* PlacesViewController.swift in Sources */,
 				093081AF212AA4A000557600 /* Constants.swift in Sources */,
 				094A534C2137A69D00759772 /* Manage.swift in Sources */,
 				094AA98B213680200049CD2C /* Resource.swift in Sources */,
@@ -575,10 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -594,10 +597,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ARXY2PA7PZ;
 				INFOPLIST_FILE = TaxiGo_Project/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Shannn.TaxiGo-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

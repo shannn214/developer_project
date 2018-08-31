@@ -93,18 +93,18 @@ func riderData(data: [String: Any]?) -> Rider? {
     return nil
 }
 
-func nearbyDriversData(data: [String: Any]?) -> [NearbyDrivers]? {
+func nearbyDriversData(array: [[String: Any]]?) -> [NearbyDrivers]? {
     
     var nbDrivers = [NearbyDrivers]()
     
-    if let nearbyDrivers = data as? [[String: Any]] ?? nil {
+    if let nearbyDrivers = array ?? nil {
         
         for driver in nearbyDrivers {
             
-            let lat = driver["lat"] as? Double
-            let lng = driver["lng"] as? Double
+            guard let lat = driver["lat"] as? Double,
+                let lng = driver["lng"] as? Double else { return nil }
             
-            let drivers = NearbyDrivers(lat: lat!, lng: lng!)
+            let drivers = NearbyDrivers(lat: lat, lng: lng)
             nbDrivers.append(drivers)
 
         }
