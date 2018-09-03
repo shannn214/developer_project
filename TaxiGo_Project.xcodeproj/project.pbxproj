@@ -29,6 +29,7 @@
 		09547B57212D52D8008B151A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09547B56212D52D8008B151A /* Dictionary.swift */; };
 		0957D158213407230077D885 /* SHHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D157213407230077D885 /* SHHTTPResponse.swift */; };
 		0957D15B213408090077D885 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957D15A213408090077D885 /* Ride.swift */; };
+		095969B9213CD6070099737C /* SHMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095969B8213CD6070099737C /* SHMapViewController.swift */; };
 		EB04A6EDF3B3625814EB5A16 /* Pods_TaxiGo_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		09547B56212D52D8008B151A /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		0957D157213407230077D885 /* SHHTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHTTPResponse.swift; sourceTree = "<group>"; };
 		0957D15A213408090077D885 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		095969B8213CD6070099737C /* SHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHMapViewController.swift; sourceTree = "<group>"; };
 		546817594D783C2C79C44EB4 /* Pods_TaxiGo_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaxiGo_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B2FAA7A9D9160DA223C47E /* Pods-TaxiGo_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE607CE0DEDF77C63E698D8 /* Pods-TaxiGo_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiGo_Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxiGo_Project/Pods-TaxiGo_Project.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				094AA9882136796D0049CD2C /* MapViewController.swift */,
 				094B6D06213916C600DD32EF /* PlacesViewController.swift */,
+				095969B8213CD6070099737C /* SHMapViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				093081AF212AA4A000557600 /* Constants.swift in Sources */,
 				094A534C2137A69D00759772 /* Manage.swift in Sources */,
 				094AA98B213680200049CD2C /* Resource.swift in Sources */,
+				095969B9213CD6070099737C /* SHMapViewController.swift in Sources */,
 				093081A7212A9BDA00557600 /* RideProvider.swift in Sources */,
 				09308192212A9B7B00557600 /* AppDelegate.swift in Sources */,
 				093081BE212ACCE200557600 /* LoginPageViewController.swift in Sources */,

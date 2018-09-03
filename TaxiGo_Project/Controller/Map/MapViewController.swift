@@ -14,6 +14,16 @@ import GooglePlacePicker
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var searchDestination: UITextField!
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var searchFrom: UITextField!
+    
+    var resultViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
+    
+    var fetcher: GMSAutocompleteFetcher?
     
     let infoMarker = GMSMarker()
     
@@ -29,74 +39,141 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var selectedPlace: GMSPlace?
     
-    private var place: GMSPlace
-
-    init(place: GMSPlace) {
-        self.place = place
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.isMyLocationEnabled = true
-        mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        showSpot()
+        placesClient = GMSPlacesClient.shared()
         
-        mapView.delegate = self
+        setMapView()
         
-        initialSetting()
+        getCurrentPlace()
+        
+        setupResultSearch()
+        
+//        searchDestination.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
+        searchFrom.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func initialSetting() {
-        
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-        
-        placesClient = GMSPlacesClient.shared()
+    @objc func triggerSearchAction() {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        autocompleteController.modalPresentationStyle = .overCurrentContext
+        present(autocompleteController, animated: true, completion: nil)
     }
     
-//    latitude: 25.019946, longitude: 121.528717
-    func showSpot() {
+    func setupFetcher() {
+        
+        let visibleRegion = mapView.projection.visibleRegion()
+        let bounds = GMSCoordinateBounds(coordinate: visibleRegion.farLeft, coordinate: visibleRegion.farRight)
+        
+        fetcher = GMSAutocompleteFetcher(bounds: bounds, filter: nil)
+        fetcher?.delegate = self
+        
+        searchDestination.addTarget(self, action: #selector(textFiedDidChange), for: .editingChanged)
+
+    }
+    
+    @objc func textFiedDidChange() {
+        
+        fetcher?.sourceTextHasChanged(searchDestination.text)
+        
+    }
+    
+    
+    func setupResultSearch() {
+        
+        resultViewController = GMSAutocompleteResultsViewController()
+        resultViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultViewController)
+        searchController?.searchResultsUpdater = resultViewController
+        
+        let subView = UIView(frame: CGRect(x: 0, y: 65, width: 350, height: 45))
+        
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        
+        definesPresentationContext = true
+        
+        navigationController?.navigationBar.isTranslucent = false
+        searchController?.hidesNavigationBarDuringPresentation = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.edgesForExtendedLayout = .top
+        
+    }
+    
+    fileprivate func setMapView() {
+        
+        mapView.delegate = self
+        mapView.isMyLocationEnabled = true
+        mapView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
         let camera = GMSCameraPosition.camera(withLatitude: 25.019946,
                                               longitude: 121.528717,
                                               zoom: zoomLevel)
-        
-        self.mapView.isHidden = true
-        self.mapView.camera = camera
-        self.mapView.settings.compassButton = true
-        self.mapView.settings.myLocationButton = true
-        
         let position = CLLocationCoordinate2D(latitude: 25.019946, longitude: 121.528717)
-        let secondPosition = CLLocationCoordinate2D(latitude: 25.030992, longitude: 121.563741)
+
+        mapView.camera = camera
+        mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = true
+        mapView.camera = GMSCameraPosition(target: position, zoom: 15, bearing: 0, viewingAngle: 0)
+
+//        let secondPosition = CLLocationCoordinate2D(latitude: 25.030992, longitude: 121.563741)
 //        let marker = GMSMarker(position: position)
 //        let secondMarker = GMSMarker(position: secondPosition)
-//        marker.map = self.mapView
-//        marker.title = "YAHAHA" //should modify the shape
-//        secondMarker.map = self.mapView
-//        marker.tracksViewChanges = true //increase battery isage
+//        marker.map = mapView
+//        mapView.isUserInteractionEnabled = false
         
-        let marker = GMSMarker(position: place.coordinate)
-        marker.map = mapView
-        mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-        mapView.isUserInteractionEnabled = false
+        initialSetting()
         
-        print("=====")
-        print(place.coordinate)
+    }
+    
+    func getCurrentPlace() {
         
+        placesClient.currentPlace { (placeList, error) in
+            
+            if let error = error {
+                print("Pick place error: \(error.localizedDescription)")
+            }
+            
+            self.locationLabel.text = "No current place."
+            
+            if let placeList = placeList {
+                let place = placeList.likelihoods.first?.place
+                if let place = place {
+                    self.locationLabel.text = "\(place.name), lat: \(place.coordinate.latitude), lng: \(place.coordinate.longitude)"
+                    self.searchFrom.text = "\(place.name)"
+                    
+                }
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func searchAction(_ sender: Any) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        autocompleteController.modalPresentationStyle = .overCurrentContext
+        present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    func initialSetting() {
+        
+//        locationManager = CLLocationManager()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.distanceFilter = 50
+//        locationManager.startUpdatingLocation()
+//        locationManager.delegate = self
+//        placesClient = GMSPlacesClient.shared()
         
     }
     
@@ -104,7 +181,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         print("Tapped \(name): \(placeID), \(location.latitude), \(location.longitude)")
     
-//        infoMarker.snippet = placeID
+//        infoMarker.snippet = placeID // subtitle
         infoMarker.position = location
         infoMarker.title = name
         infoMarker.opacity = 0
@@ -116,83 +193,71 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
 }
 
-extension MapViewController: CLLocationManagerDelegate {
+extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let location: CLLocation = locations.last!
-        print("location: \(location)")
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
-        
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
-        }
-        
-        listLikelyPlaces()
-        
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        dismiss(animated: true, completion: nil)
     }
     
-    // Handle authorization for location manager
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .restricted:
-            print("Location access was restricted.")
-        case .denied:
-            print("User denied access to location.")
-            mapView.isHidden = false
-        case .notDetermined:
-            print("Location status not determined.")
-        case .authorizedAlways: fallthrough
-        case .authorizedWhenInUse:
-            print("Location status is OK.")
-        }
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        dismiss(animated: true, completion: nil)
     }
     
-    // Handle location manager errors.
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationManager.stopUpdatingLocation()
-        print("Error: \(error)")
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func listLikelyPlaces() {
-        // Clean up from previous sessions.
-        likePlaces.removeAll()
-        
-        placesClient.currentPlace { (placeLikelihoods, err) in
-            if let err = err {
-                // TODO: Handle the error
-                print("Current place error: \(err.localizedDescription)")
-                return
-            }
-            
-            // Get likely places and add to the list.
-            if let likelihoodList = placeLikelihoods {
-                for likelihood in likelihoodList.likelihoods {
-                    let place = likelihood.place
-                    self.likePlaces.append(place)
-                }
-            }
-            
-        }
-        
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+
+}
+
+extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        print("Place name: \(place.name)")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: Handle error
+        print("Error", error.localizedDescription)
+    }
+    
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
 }
 
-extension MapViewController: GMSPlacePickerViewControllerDelegate {
+extension MapViewController: GMSAutocompleteFetcherDelegate {
     
-    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        let resultStr = NSMutableString()
+        for prediction in predictions {
+            
+            resultStr.appendFormat("%@\n", prediction.attributedPrimaryText)
+            
+        }
         
-        self.place = place
-        
+        print(resultStr)
+    
     }
     
-    
-    
+    func didFailAutocompleteWithError(_ error: Error) {
+        print(error.localizedDescription)
+    }
     
 }
+
 

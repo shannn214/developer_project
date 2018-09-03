@@ -22,18 +22,61 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-QC-zfD">
+                                <rect key="frame" x="112" y="231" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="COB-qe-tcX"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hCk-Xz-GZc">
+                                <rect key="frame" x="112" y="181" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="0qx-Qu-7uc"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tj-6Q-tCc">
+                                <rect key="frame" x="157" y="100" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAJ-w4-eBa">
+                                <rect key="frame" x="164" y="271" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchAction:" destination="grH-Ay-NCW" eventType="touchUpInside" id="tCf-77-QIo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hCk-Xz-GZc" firstAttribute="top" secondItem="5Tj-6Q-tCc" secondAttribute="bottom" constant="60" id="BeZ-G5-oFd"/>
+                            <constraint firstItem="aAJ-w4-eBa" firstAttribute="centerX" secondItem="uwj-KJ-2Wr" secondAttribute="centerX" id="Fhp-x7-H5l"/>
+                            <constraint firstItem="hvk-QC-zfD" firstAttribute="centerX" secondItem="uwj-KJ-2Wr" secondAttribute="centerX" id="GUK-o0-22m"/>
+                            <constraint firstItem="5Tj-6Q-tCc" firstAttribute="centerX" secondItem="uwj-KJ-2Wr" secondAttribute="centerX" id="RK2-zQ-qsU"/>
+                            <constraint firstItem="5Tj-6Q-tCc" firstAttribute="top" secondItem="teE-Ng-9Bz" secondAttribute="top" constant="80" id="SaP-29-DVC"/>
                             <constraint firstItem="teE-Ng-9Bz" firstAttribute="bottom" secondItem="7j9-3S-Ffl" secondAttribute="bottom" id="UYf-58-98m"/>
                             <constraint firstItem="7j9-3S-Ffl" firstAttribute="leading" secondItem="teE-Ng-9Bz" secondAttribute="leading" id="ZYh-9t-Ww9"/>
+                            <constraint firstItem="hvk-QC-zfD" firstAttribute="top" secondItem="hCk-Xz-GZc" secondAttribute="bottom" constant="20" id="bdw-3F-gm4"/>
+                            <constraint firstItem="hCk-Xz-GZc" firstAttribute="centerX" secondItem="uwj-KJ-2Wr" secondAttribute="centerX" id="d0Y-NM-wdr"/>
                             <constraint firstItem="7j9-3S-Ffl" firstAttribute="top" secondItem="uwj-KJ-2Wr" secondAttribute="top" id="kok-Dp-bDf"/>
                             <constraint firstItem="teE-Ng-9Bz" firstAttribute="trailing" secondItem="7j9-3S-Ffl" secondAttribute="trailing" id="tE5-Ko-0K4"/>
+                            <constraint firstItem="aAJ-w4-eBa" firstAttribute="top" secondItem="hCk-Xz-GZc" secondAttribute="bottom" constant="60" id="we0-Ph-wah"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="teE-Ng-9Bz"/>
                     </view>
                     <connections>
+                        <outlet property="locationLabel" destination="5Tj-6Q-tCc" id="XSB-Uz-Zq3"/>
                         <outlet property="mapView" destination="7j9-3S-Ffl" id="D5B-dk-EcJ"/>
+                        <outlet property="searchBtn" destination="aAJ-w4-eBa" id="oMh-yB-VJZ"/>
+                        <outlet property="searchDestination" destination="hCk-Xz-GZc" id="HAb-PR-DXS"/>
+                        <outlet property="searchFrom" destination="hvk-QC-zfD" id="Ul2-Dj-k8q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orO-FT-IXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
