@@ -14,7 +14,6 @@ import GooglePlacePicker
 class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var searchDestination: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var searchFrom: UITextField!
@@ -22,6 +21,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var resultViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
+    
+    var searchFromController: UISearchController?
+    var searchToController: UISearchController?
+    
+    var customSearchController: CustomSearchController!
     
     var fetcher: GMSAutocompleteFetcher?
     
@@ -48,7 +52,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         getCurrentPlace()
         
-        setupResultSearch()
+        customConfigureSearchController()
+        
+//        configureSearchController()
+        
+//        setupResultSearch()
         
 //        searchDestination.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
         searchFrom.addTarget(self, action: #selector(triggerSearchAction), for: .touchDown)
@@ -64,6 +72,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         autocompleteController.delegate = self
         autocompleteController.modalPresentationStyle = .overCurrentContext
         present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    func customConfigureSearchController() {
+        
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 20, y: 64, width: UIScreen.main.bounds.width - 40, height: 50), searchBarFont: UIFont(name: "Futura", size: 16)!, searchBarTextColor: UIColor.orange, searchBarTintColor: UIColor.black)
+        
+        customSearchController.customSearchBar.placeholder = "Current place"
+        view.addSubview(customSearchController.customSearchBar)
+        customSearchController.customDelegate = self
     }
     
     func setupFetcher() {
@@ -84,6 +101,20 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
     }
     
+    // Setup from/to search
+    func configureSearchController() {
+        
+        searchFromController = UISearchController(searchResultsController: nil)
+        searchFromController?.searchResultsUpdater = self
+        searchFromController?.dimsBackgroundDuringPresentation = false
+        searchFromController?.searchBar.placeholder = "Current place"
+        searchFromController?.searchBar.delegate = self
+        searchFromController?.searchBar.sizeToFit()
+        
+        // Place the search bar view to the tableview headerview
+        // tblSearchResult.tableHeaderView = searchController.searchBar
+        
+    }
     
     func setupResultSearch() {
         
@@ -143,12 +174,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 print("Pick place error: \(error.localizedDescription)")
             }
             
-            self.locationLabel.text = "No current place."
+//            self.locationLabel.text = "No current place."
             
             if let placeList = placeList {
                 let place = placeList.likelihoods.first?.place
                 if let place = place {
-                    self.locationLabel.text = "\(place.name), lat: \(place.coordinate.latitude), lng: \(place.coordinate.longitude)"
+//                    self.locationLabel.text = "\(place.name), lat: \(place.coordinate.latitude), lng: \(place.coordinate.longitude)"
                     self.searchFrom.text = "\(place.name)"
                     
                 }
@@ -257,6 +288,35 @@ extension MapViewController: GMSAutocompleteFetcherDelegate {
     func didFailAutocompleteWithError(_ error: Error) {
         print(error.localizedDescription)
     }
+    
+}
+
+extension MapViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+}
+
+extension MapViewController: CustomSearchControllerDelegate {
+    
+    func didStartSearching() {
+        
+    }
+    
+    func didTapOnSearchButton() {
+        
+    }
+    
+    func didTapOnCancelButton() {
+        
+    }
+    
+    func didChangeSearchText(searchText: String) {
+        
+    }
+    
     
 }
 
